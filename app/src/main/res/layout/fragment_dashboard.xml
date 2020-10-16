@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.DashboardFragment">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+
+        android:layout_height="40dp">
+        <TextView
+            android:id="@+id/pcNumText"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_height="fill_parent"
+            android:text="PC"
+            android:layout_weight="1"
+            android:textSize="17sp"/>
+
+        <Spinner
+            android:id="@+id/pcNum"
+            android:padding="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textAlignment="gravity" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Индекс"
+            android:gravity="center"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/pcIndex"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Spinner
+            android:id="@+id/pcIndex"
+            android:padding="0dp"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/nameBox"
+            android:layout_width="350dp"
+            android:hint="Если хочешь по учительскому"
+            android:textAlignment="center"
+            android:layout_height="fill_parent"
+            android:backgroundTint="#00FF37"
+            android:ems="10"
+            />
+
+        <Button
+            android:id="@+id/deleteName"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="20dp"
+            android:background="@drawable/delete" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bntGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:padding="5dp"
+        android:paddingTop="0dp"
+        android:layout_margin="0dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/pcShutdown"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="комп"
+                android:onClick="sendButtonCom"
+                android:tag="1" />
+
+            <Button
+                android:id="@+id/pcWpsKill"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="WPS"
+                android:onClick="sendButtonCom"
+                android:tag="2" />
+
+            <Button
+                android:id="@+id/pcPsKill"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="PHOTOSHOP"
+                android:onClick="sendButtonCom"
+                android:tag="3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/pcExKill"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="EXPLORER"
+                android:onClick="sendButtonCom"
+                android:tag="4" />
+
+            <Button
+                android:id="@+id/pcChKill"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="CHROME"
+                android:onClick="sendButtonCom"
+                android:tag="5" />
+
+            <Button
+                android:id="@+id/logOut"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="LOG OUT"
+                android:onClick="sendButtonCom"
+                android:tag="6"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/pcStKill"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="sendButtonCom"
+                android:tag="7"
+                android:text="STUDENT" />
+
+            <Button
+                android:id="@+id/pcVsKill"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="VISUAL SUDIO"
+                android:onClick="sendButtonCom"
+                android:tag="8"/>
+
+
+            <Button
+                android:id="@+id/website"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="MAIL GAMES"
+                android:onClick="sendButtonCom"
+                android:tag="9"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/lockwin"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Заблочить винду"
+                android:onClick="sendButtonCom"
+                android:tag="10"/>
+
+            <Button
+                android:id="@+id/zapas"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="sendButtonCom"
+                android:tag="11"
+                android:text="КАРТИНКА Кс 1.6" />
+
+            <Button
+                android:id="@+id/sosat"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="СОСАТ"
+                android:onClick="sendButtonCom"
+                android:tag="12" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/teacherAlert"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="#C3083F"
+                android:text="ЗАБЛОКИРОВАТЬ ВСЕМ КОМПЫ"
+                android:onClick="sendButtonCom"
+                android:tag="10"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+<!--    <FrameLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <LinearLayout-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            >-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/rltwhl"-->
+<!--                android:layout_width="300dp"-->
+<!--                android:layout_height="300dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:background="@drawable/rlt"-->
+<!--                />-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="20dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_marginLeft="7dp"-->
+<!--                android:background="@drawable/arrow"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:backgroundTint="#fff"/>-->
+<!--        </LinearLayout>-->
+<!--    </FrameLayout>-->
+
+
+
+
+</LinearLayout>

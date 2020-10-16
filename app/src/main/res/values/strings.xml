@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WrongDoor</string>
+    <string name="title_home">Кастомные</string>
+    <string name="title_dashboard">Быстрые</string>
+    <string name="title_notifications">cASU</string>
+
+</resources>
