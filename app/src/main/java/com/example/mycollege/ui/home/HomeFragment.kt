@@ -4,13 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
-import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.textclassifier.TextSelection
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
@@ -19,11 +17,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.mycollege.*
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
-import java.lang.Exception
 
 lateinit var request : IntCom
 
@@ -133,7 +128,7 @@ class HomeFragment : Fragment() {
 
                 var lastLineVisible = scrollerOutp.scrollY + scrollerOutp.height + 200 >= conteiner.height || conteiner.childCount <= 1
 
-                var utomes = request.getOutp()
+                var utomes = request.getChat()
                 if(utomes.size != oldtext){
 
                     var newmes = utomes.slice(utomes.size - 50 until utomes.size)

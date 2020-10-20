@@ -136,9 +136,32 @@ class IntCom {
 
 
 
-    fun getOutp() : List<UsernameToMsg>{
+    fun getChat() : List<UsernameToMsg>{
         var reqParam = URLEncoder.encode("uniqueid", "UTF-8") + "=" + URLEncoder.encode(secretkey, "UTF-8")
         val mURL = URL("${apisite}api/getChat?$reqParam")
+        with(mURL.openConnection() as HttpURLConnection) {
+            requestMethod = "POST"
+            val wr = OutputStreamWriter(outputStream);
+            wr.flush();
+            BufferedReader(InputStreamReader(inputStream)).use {
+                val response = StringBuffer()
+                var inputLine = it.readLine()
+                while (inputLine != null) {
+                    response.append(inputLine)
+                    inputLine = it.readLine()
+                }
+                it.close()
+
+                //Перевод джсон объекта в лист класса UsernameToMsg
+                var messages : List<UsernameToMsg> = Gson().fromJson(response.toString(),object : TypeToken<List<UsernameToMsg>>() {}.type)
+                return(messages)
+            }
+        }
+    }
+
+    fun getOutput() : List<UsernameToMsg>{
+        var reqParam = URLEncoder.encode("uniqueid", "UTF-8") + "=" + URLEncoder.encode(secretkey, "UTF-8")
+        val mURL = URL("${apisite}api/getOutput?$reqParam")
         with(mURL.openConnection() as HttpURLConnection) {
             requestMethod = "POST"
             val wr = OutputStreamWriter(outputStream);
