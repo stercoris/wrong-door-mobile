@@ -108,8 +108,8 @@ class IntCom {
         Thread {
             var message = com;
             var reqParam =  URLEncoder.encode("uniqueid", "UTF-8") + "=" + URLEncoder.encode(secretkey, "UTF-8")
-            reqParam += "&" + URLEncoder.encode("com", "UTF-8") + "=" + URLEncoder.encode(com.body, "UTF-8")
-            reqParam += "&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("${com.type}", "UTF-8")
+                reqParam += "&" + URLEncoder.encode("com", "UTF-8") + "=" + URLEncoder.encode(com.body, "UTF-8")
+                reqParam += "&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("${com.type}", "UTF-8")
 
 
             val mURL = URL("${apisite}api/add?$reqParam")
@@ -160,8 +160,29 @@ class IntCom {
     }
 
 
+    fun isOnline(): Boolean{
+        val mURL = URL("${apisite}api/isOnline?")
+        with(mURL.openConnection() as HttpURLConnection) {
+            requestMethod = "POST"
+            val wr = OutputStreamWriter(outputStream);
+            wr.flush();
+            BufferedReader(InputStreamReader(inputStream)).use {
+                val response = StringBuffer()
+                var inputLine = it.readLine()
+                while (inputLine != null) {
+                    response.append(inputLine)
+                    inputLine = it.readLine()
+                }
+                it.close()
+                return if(response.toString() == "Online") (true) else (false)
 
-    class Student()
+            }
+        }
+    }
+
+
+
+    class Student
     {
         var name: String = ""
         var groupid: String = ""

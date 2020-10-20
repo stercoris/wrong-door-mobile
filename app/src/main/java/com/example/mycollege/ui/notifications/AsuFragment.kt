@@ -33,7 +33,7 @@ class AsuFragment : Fragment() {
         Thread{
             var studnames = ArrayList<String>()
             for(student in con.getStudents()){
-                studnames.add(student.name)
+                studnames.add(student.name + " " + student.id)
                 println("${student.groupid} == ${student.name} == ${student.id}")
             }
             var cmt = context

@@ -21,28 +21,28 @@ class loadingscreen : AppCompatActivity() {
             applicationContext?.contentResolver,
             Settings.Secure.ANDROID_ID)
 
-        var request = IntCom(androidid)
+        var req  = IntCom(androidid)
 
-
+        //Проверка на доступ и онлайн сервера
         Thread {
             Thread.sleep(2000)
-            if(request.getAccess())
-            {
-                runOnUiThread(java.lang.Runnable {
-                    Handler().postDelayed({
-                        // This method will be executed once the timer is over
-                        // Start your app main activity
-                        startActivity(Intent(this,MainActivity::class.java))
-                        // close this activity
-                        finish()
-                    },0)
-                })
-            }
-            else{
-                runOnUiThread(java.lang.Runnable {
-                    errors.text = "leatherman club is two blocks down"
-                })
+            when {
+                req.getAccess() and  req.isOnline() -> gotoMain("All OK",1000)
+                req.getAccess() and !req.isOnline() -> gotoMain("TPCOL currently offline",5000)
+                else -> runOnUiThread { errors.text = "leatherman club is two blocks down" }
             }
         }.start()
+
+    }
+
+    fun gotoMain(message: String,delay: Long)
+    {
+        runOnUiThread {
+            errors.text = message
+            Handler().postDelayed({
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }, delay)
+        }
     }
 }

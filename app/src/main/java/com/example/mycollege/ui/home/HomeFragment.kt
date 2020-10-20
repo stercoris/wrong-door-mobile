@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.textclassifier.TextSelection
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
@@ -171,13 +172,13 @@ class HomeFragment : Fragment() {
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
             tv.text = ">${utom.username}: ${utom.message}"
+            tv.isCursorVisible = true
 
             //Server отображается красным
             if(utom.username == "/Server")
                 tv.setTextColor( Color.parseColor("#FF0000"))
             else
                 tv.setTextColor( Color.parseColor("#00FF37"))
-
 
             tv.setPadding(10,10,10,10)
 

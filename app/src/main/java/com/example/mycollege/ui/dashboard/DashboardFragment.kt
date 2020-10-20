@@ -39,28 +39,33 @@ class DashboardFragment : Fragment() {
         var root = inflater.inflate(com.example.mycollege.R.layout.fragment_dashboard, container, false)
         //При нажати на колесо(пока не нужно!!!)
 //        root.rltwhl.setOnClickListener(this::spin)
-        root.pcShutdown.setOnClickListener(this::sendButtonCom)
-        root.pcWpsKill.setOnClickListener(this::sendButtonCom)
-        root.pcPsKill.setOnClickListener(this::sendButtonCom)
-        root.pcExKill.setOnClickListener(this::sendButtonCom)
-        root.pcChKill.setOnClickListener(this::sendButtonCom)
-        root.logOut.setOnClickListener(this::sendButtonCom)
-        root.pcStKill.setOnClickListener(this::sendButtonCom)
-        root.pcVsKill.setOnClickListener(this::sendButtonCom)
-        root.website.setOnClickListener(this::sendButtonCom)
-        root.lockwin.setOnClickListener(this::sendButtonCom)
-        root.zapas.setOnClickListener(this::sendButtonCom)
-        root.sosat.setOnClickListener(this::sendButtonCom)
-        root.teacherAlert.setOnClickListener(this::alertTeacher)
-        root.deleteName.setOnClickListener {
-            nameBox.text.clear()
-        }
+
         //Коммуникация с сервером
         androidid = Settings.Secure.getString(context?.contentResolver, Settings.Secure.ANDROID_ID)
         req = IntCom(androidid)
 
 
         return root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        pcShutdown.setOnClickListener(this::sendButtonCom)
+        pcWpsKill.setOnClickListener(this::sendButtonCom)
+        pcPsKill.setOnClickListener(this::sendButtonCom)
+        pcExKill.setOnClickListener(this::sendButtonCom)
+        pcChKill.setOnClickListener(this::sendButtonCom)
+        logOut.setOnClickListener(this::sendButtonCom)
+        pcStKill.setOnClickListener(this::sendButtonCom)
+        pcVsKill.setOnClickListener(this::sendButtonCom)
+        website.setOnClickListener(this::sendButtonCom)
+        lockwin.setOnClickListener(this::sendButtonCom)
+        zapas.setOnClickListener(this::sendButtonCom)
+        screamer.setOnClickListener(this::sendButtonCom)
+        teacherAlert.setOnClickListener(this::alertTeacher)
+        deleteName.setOnClickListener {
+            nameBox.text.clear()
+        }
     }
 
     override fun onStart() {
@@ -126,8 +131,7 @@ class DashboardFragment : Fragment() {
             "10"   -> Message("-d -s -i \\\\$pcName cmd /C \"rundll32.exe user32.dll,LockWorkStation\"",MessageType.PsExec)
             "11"   -> Message("-d -s -i \\\\$pcName \"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\"" +
                     "\"https://static.wikia.nocookie.net/counterstrike/images/3/3c/Cs_1.6_background.png/revision/latest?cb=20140922174445&path-prefix=ru\"",MessageType.PsExec)
-            "12"   -> Message("-d -s -i \\\\$pcName \"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\"" +
-                    "\"https://www.google.com/search?q=%D0%BA%D0%B0%D0%BA+%D0%B6%D0%B5+%D1%8F+%D0%BB%D1%8E%D0%B1%D0%BB%D1%8E+%D1%81%D0%BE%D1%81%D0%B0%D1%82%D1%8C!\"",MessageType.PsExec)
+            "12"   -> Message("-i -s -d -c -f \\\\$pcName \"C:\\NVIDIA\\trp\\sk.exe\"",MessageType.PsExec)
 
             else -> return
         }
