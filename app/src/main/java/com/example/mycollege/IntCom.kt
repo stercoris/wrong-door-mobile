@@ -20,7 +20,11 @@ class IntCom {
     {
         secretkey = uid
     }
-
+                                                             //ToDo
+                                    //вывод консоли в другой хуите какойта блядь как я заебался
+                                    //- //кансольная хуита в одну строчку тока была
+                                    //@::::::::::::::::::::3
+                                    //еще адно окно сделать
     fun getStudents(): List<Student> {
         val mURL = URL("${apisite}college/getStudents/index.php?")
         with(mURL.openConnection() as HttpURLConnection) {

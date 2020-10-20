@@ -4,4 +4,10 @@
     <string name="title_dashboard">Быстрые</string>
     <string name="title_notifications">cASU</string>
 
+
+    //массив для спинера или комбобокса я не еьу
+    <string-array name="cmdTypes">
+        <item>CMD</item>
+        <item>PsExec</item>
+    </string-array>
 </resources>

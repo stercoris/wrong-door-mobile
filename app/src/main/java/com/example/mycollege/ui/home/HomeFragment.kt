@@ -1,8 +1,6 @@
 package com.example.mycollege.ui.home
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.provider.Settings
@@ -12,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.mycollege.*
@@ -25,7 +22,6 @@ lateinit var request : IntCom
 class HomeFragment : Fragment() {
     lateinit var root:View
     private lateinit var homeViewModel: HomeViewModel
-    lateinit var androidid: String
     @SuppressLint("HardwareIds")
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -36,7 +32,7 @@ class HomeFragment : Fragment() {
         root = inflater.inflate(R.layout.fragment_home, container, false)
 
         root.sendButton.setOnClickListener(this::sendCustomCommand)
-        androidid = Settings.Secure.getString(
+        var androidid = Settings.Secure.getString(
             context?.contentResolver,
             Settings.Secure.ANDROID_ID)
         request = IntCom(androidid)
@@ -53,74 +49,18 @@ class HomeFragment : Fragment() {
         //Создаю новый объект Message(%тект сообщения%, %тип сообщения%)
         val com: Message = Message(commandBox.text.toString(), MessageType.Text)
 
-        //Если сообщение пустое или это пуставя команда, то
-        if(com.body.isBlank() || (com.body.substring(0,1) == "/" && com.body.substring(1).isBlank()))
-        {
-            commandBox.text.clear()
+        //Если сообщение пустое
+        if(com.body.isBlank())
             return
-        }
 
-        //Проверка на шутдовн(можно выключить комп на котором всё хостица)
-        if(com.body.contains("shutdown") and !com.body.contains("/m"))
-        {
-            val context: Context = this.context ?: return
-            val dialog = AlertDialog.Builder(context)
-            dialog.setTitle("Если хочешь вырубить комп,то вырубай через Быстрые")
-            val ok = DialogInterface.OnClickListener{ _, _ ->}
-            dialog.setPositiveButton("понятна",ok)
-            var dial:AlertDialog = dialog.create()
-            dial.show()
-            return
-        }
-
-
-
-        //Разные типы команд
-        when {
-            com.body.substring(0,2) == "//" -> {
-                com.type = MessageType.PsExec
-                com.body = com.body.substring(2,com.body.length)
-            }
-            com.body.substring(0,1) == "/" -> {
-                com.type = MessageType.CMD
-                com.body = com.body.substring(1,com.body.length)
-            }
-            else -> {
-                com.type = MessageType.Text
-            }
-        }
-
-        //Уверен ли пользователь
-        if(com.type != MessageType.Text)
-        {
-
-            val context: Context = this.context ?: return
-            val dialog = AlertDialog.Builder(context)
-            dialog.setTitle("Точно выполнить??аа")
-            val ok = DialogInterface.OnClickListener{ _, which ->
-                when(which)
-                {
-                    DialogInterface.BUTTON_POSITIVE ->
-                    {
-                        request.send(com)
-                    }
-                }
-            }
-            dialog.setPositiveButton("да",ok)
-            dialog.setNegativeButton("не",ok)
-            var dial: AlertDialog = dialog.create()
-            dial.show()
-
-        }
-        else{
-            request.send(com)
-            commandBox.text.clear()
-        }
+        com.type = MessageType.Text
+        request.send(com)
+        commandBox.text.clear()
     }
 
     var oldtext: Int = 0;
 
-    private fun getOutp(){
+    private fun getChat(){
         Thread {
             if(activity != null){
                 val main: MainActivity = activity as MainActivity
@@ -168,12 +108,7 @@ class HomeFragment : Fragment() {
             tv.text = ">${utom.username}: ${utom.message}"
             tv.isCursorVisible = true
 
-            //Server отображается красным
-            if(utom.username == "/Server")
-                tv.setTextColor( Color.parseColor("#FF0000"))
-            else
-                tv.setTextColor( Color.parseColor("#00FF37"))
-
+            //Server отображается красныy
             tv.setPadding(10,10,10,10)
 
             (activity as MainActivity).runOnUiThread(java.lang.Runnable {
@@ -188,7 +123,7 @@ class HomeFragment : Fragment() {
         Thread {
             while (scrollerOutp != null) {
                 try {
-                    getOutp()
+                    getChat()
                 }
                 finally {}
                 Thread.sleep(800)

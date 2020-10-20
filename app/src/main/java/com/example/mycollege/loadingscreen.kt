@@ -24,7 +24,7 @@ class loadingscreen : AppCompatActivity() {
         var req  = IntCom(androidid)
 
         //Проверка на доступ и онлайн сервера
-        Thread {
+        Thread {//код гавно
             Thread.sleep(2000)
             when {
                 req.getAccess() and  req.isOnline() -> gotoMain("All OK",1000)

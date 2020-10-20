@@ -13,5 +13,8 @@
         <item name="color">#fff</item>
     </style>
 
+    <style name="spinerItems" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textSize">20sp</item>
+    </style>
 
 </resources>
